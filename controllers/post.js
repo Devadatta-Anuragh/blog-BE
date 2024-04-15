@@ -19,6 +19,7 @@ async function handleCreatePost(req, res) {
 
     try {
         upload.single('image')(req, res, async (err) => {
+
             const { title, description, tags } = req.body;
             console.log(req.body)
             console.log(req.file);
@@ -30,7 +31,7 @@ async function handleCreatePost(req, res) {
                 title,
                 description,
                 tags,
-                image: attachments // Save the file path in the database
+                image: attachments
             });
             console.log("post created");
             return res.json({ msg: "created" });
@@ -40,7 +41,6 @@ async function handleCreatePost(req, res) {
         return res.status(400).json({ msg: "not created" });
     }
 }
-
 
 
 async function handleGetPosts(req, res) {
